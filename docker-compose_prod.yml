@@ -1,0 +1,6 @@
+version: '3.7'
+services:
+  do-static:
+    image: do-static
+    ports:
+      - "80:80"

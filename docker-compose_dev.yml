@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  do-microservice-one:
+    image: do-microservice-one
+    volumes:
+      - ./microservice-one:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+  do-microservice-two:
+    image: do-microservice-two
+    volumes:
+      - ./microservice-two:/app
+      - /app/node_modules
+    ports:
+      - "4201:4201"
+  do-nginx:
+    image: do-nginx
+    ports:
+      - "80:80"
+    links:
+      - do-microservice-one
+      - do-microservice-two
