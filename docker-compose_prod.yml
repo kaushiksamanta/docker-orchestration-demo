@@ -4,3 +4,14 @@ services:
     image: do-static
     ports:
       - "80:80"
+    command: >
+      sh -c "cd microservice-one/ &&
+      npm run build:docker &
+      cd microservice-two/ &&
+      npm run build:docker &
+      nginx -g 'daemon off;'"
+    volumes:
+      - ./microservice-one/:/app/microservice-one/
+      - /app/microservice-one/node_modules
+      - ./microservice-two/:/app/microservice-two/
+      - /app/microservice-two/node_modules

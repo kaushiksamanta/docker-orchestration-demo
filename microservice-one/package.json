@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:docker": "ng build --prod --watch --poll 10000 --outputPath=../../usr/share/nginx/html/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

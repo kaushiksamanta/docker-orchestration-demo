@@ -2,7 +2,7 @@
 
 echo "Building docker images"
 
-docker build -t do-static:latest -f prod.Dockerfile .
+docker build -t do-static:latest -f nginx/Dockerfile .
 
 echo "Building successfull"
 
