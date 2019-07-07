@@ -4,14 +4,7 @@ services:
     image: do-static
     ports:
       - "80:80"
-    command: >
-      sh -c "cd microservice-one/ &&
-      npm run build:docker &
-      cd microservice-two/ &&
-      npm run build:docker &
-      nginx -g 'daemon off;'"
     volumes:
-      - ./microservice-one/:/app/microservice-one/
-      - /app/microservice-one/node_modules
-      - ./microservice-two/:/app/microservice-two/
-      - /app/microservice-two/node_modules
+      - ./nginx/etc/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/etc/conf.d/nginx.prod.conf:/etc/nginx/conf.d/default.conf
+    command: ["nginx", "-g", "daemon off;"]

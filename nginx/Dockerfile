@@ -8,22 +8,16 @@ WORKDIR /app
 COPY microservice-one ./microservice-one
 COPY microservice-two ./microservice-two
 
-# RUN rm -rf /usr/share/nginx/html/*
-
-COPY nginx/etc/nginx.conf /etc/nginx/nginx.conf
-COPY nginx/etc/conf.d/nginx.dev.conf /etc/nginx/conf.d/default.conf
+RUN rm -rf /usr/share/nginx/html/*
 
 RUN cd microservice-one \
     && npm ci \
+    && npm run build:docker \
     && cd ..
 
 RUN cd microservice-two \
     && npm ci \
+    && npm run build:docker \
     && cd ..
-
-# RUN cd microservice-one/ \
-#     && npm run build:docker \
-#     & cd microservice-two/ \
-#     && npm run build:docker
 
 EXPOSE 80
